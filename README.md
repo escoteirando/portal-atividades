@@ -1,5 +1,7 @@
 # portal-atividades
 
+[![CodeQL](https://github.com/escoteirando/portal-atividades/actions/workflows/codeql.yml/badge.svg)](https://github.com/escoteirando/portal-atividades/actions/workflows/codeql.yml)
+
 Portal colaborativo de atividades escoteiras
 
 ## Links
