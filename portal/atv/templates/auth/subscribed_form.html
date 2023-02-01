@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+<h1>Novo usuário adicionado</h1>  
+<p>Olá, {{ escotista.name }}!</p>
+{% if escotista.scout_group %}
+<p>Identificamos que você pertence ao grupo escoteiro  {{ escotista.scout_group }}.</p>
+{% else %}
+<p>Identificamos que você não pertence a nenhum grupo escoteiro.</p>
+{% endif %}
+<p>Registramos seu acesso ao sistema. Você pode acessar o sistema com o seu e-mail {{ escotista.email }} e a senha que você cadastrou.</p>
+
+
+<a type="button" class="btn btn-primary" href="{% url 'login' %}">Acessar o sistema</a>
+{% endblock %}

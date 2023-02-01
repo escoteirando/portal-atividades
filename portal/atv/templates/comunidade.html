@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>      
+      <th scope="col">Informação</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Escotistas</th>
+      <td>{{ escotistas_count }}</td>      
+    </tr>
+    <tr>
+      <th scope="row">Último escotista</th>
+      <td>{{ last_escotista }}</td>      
+      <td>{{ last_escotista.subscribe_date }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Atividades</th>
+        <td>{{ atividades_count }}</td>
+    </tr>
+    {% if last_atividade %}
+    <tr>
+      <th scope="row">Última atividade</th>
+      <td>{{ last_atividade }} ({{ last_atividade.editor }})</td>      
+      <td>{{ last_atividade.creation_date }}</td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

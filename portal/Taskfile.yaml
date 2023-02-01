@@ -1,0 +1,39 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GREETING: Hello, World!
+
+dotenv:
+  - ".env"
+
+tasks:
+  reset_db:
+    cmds:
+      - rm db.sqlite3
+      - python manage.py makemigrations
+      - python manage.py migrate
+      
+  migrations:
+    cmds:
+      - python manage.py makemigrations
+      - python manage.py migrate
+
+  create_super_user:
+    cmds:
+      - python manage.py createsuperuser
+
+  collectstatic:
+    cmds:
+      - python manage.py collectstatic --noinput
+
+  serve:
+    deps:
+      - task: collectstatic
+    cmds:
+      - python manage.py runserver 0.0.0.0:8000
+
+  lint:
+    cmds:
+      - pylint **/*.py --disable=missing-docstring

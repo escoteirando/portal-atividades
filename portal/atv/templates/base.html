@@ -1,0 +1,73 @@
+{% extends 'bootstrap.html' %} 
+{% load static %}
+{% load bootstrap5 %}
+{% block bootstrap5_content %}
+<header class="p-3 mb-3 border-bottom">
+  <div class="container-fluid">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a class="navbar-brand" href="/"><img src="{% static 'images/escoteirando_logo_1.svg' %}" height="48px"> </a>
+        <h4 class="secondary-text">{{ title }}</h4>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+{% if menu_items %}
+        {% for item in menu_items %}
+        <li class="nav-item">
+          <a class="nav-link px-2" href="{% url item.url %}">{{ item.title }}</a>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>        
+        
+      {% if user.is_authenticated %}
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" >
+          {{ user }}
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+          </ul>
+        </div>
+        {% endif %}
+      
+      </div>
+  </div>
+</header>
+
+
+
+<div class="container">
+  {% comment %} <h1>{% block title %}(no title){% endblock %}</h1> {% endcomment %}
+{% comment %} 
+  <p>
+    <a href="{% url 'home' %}">home</a>
+   <a href="{% url 'formset_default' %}">formset</a>
+    <a href="{% url 'form_default' %}">form</a>
+    <a href="{% url 'form_by_field' %}">form_by_field</a>
+    <a href="{% url 'form_horizontal' %}">form_horizontal</a>
+    <a href="{% url 'form_inline' %}">form_inline</a>
+    <a href="{% url 'form_with_files' %}">form_with_files</a>
+    <a href="{% url 'pagination' %}">pagination</a>
+    <a href="{% url 'misc' %}">miscellaneous</a>
+  </p> {% endcomment %}
+
+  {% autoescape off %}{% bootstrap_messages %}{% endautoescape %} 
+  {% block content %}(no content){% endblock %}
+</div>
+
+ <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2023 Escoteirando</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="{% url 'termos_de_uso' %}" class="nav-link px-2 text-muted">Termos de uso</a></li>
+      <li class="nav-item"><a href="{% url 'politica_de_privacidade' %}" class="nav-link px-2 text-muted">Política de privacidade</a></li>      
+    </ul>
+  </footer>
+{% endblock %}
+

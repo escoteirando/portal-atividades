@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for card in cards %}
+    <div class="col">
+    <div class="card">
+        {% if card.image %}
+        <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.title }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ card.title }}</h5>
+            {% if card.text %}
+            <p class="card-text">{{ card.text }}</p>
+            {% endif %}
+            {% if card.link %}
+            <a href="{{ card.link }}" class="btn btn-primary">{{ card.link_title }}</a>
+            {% endif %}
+        </div>        
+    </div>
+</div>
+    
+    {% endfor %}
+</div>
+{% endblock %}

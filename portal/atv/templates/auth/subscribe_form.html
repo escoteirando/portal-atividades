@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+<h1>Escoteirando</h1>  
+  <form class="form-outline mb-4" style="max-width: 330px; padding: 15px; margin: 0 auto;" method="post">{% csrf_token %}
+    {% if warning %}
+    <div class="alert alert-warning" role="alert">
+      {{ warning }}
+    </div>    
+    {% endif %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Enviar
+    </button>   
+  {% endbuttons %}
+  </form>  
+  <script>
+    const showPassword = document.getElementById('id_chk_view_pass');
+    const password = document.getElementById('id_password');
+    showPassword.addEventListener('change', function() {
+      if (showPassword.checked) {
+        password.setAttribute('type', 'text');
+      } else {
+        password.setAttribute('type', 'password');
+      }
+    });
+  </script>
+{% endblock %}

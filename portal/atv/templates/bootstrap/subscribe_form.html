@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html" %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% load static %}
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block css %}
+  <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+  <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+  <form class="form" method="post">{% csrf_token %}
+    {% bootstrap_form form %}    
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  {% endbuttons %}
+  </form>
+{% endblock %}
